@@ -1,0 +1,158 @@
+<p class="redirect-msg">city</p>
+<FireBoxRoom>
+<Assets>
+    
+    <!-- Building Models -->
+    <AssetObject id="1-story-bld" src="http://{{envServer}}:8080/serve/models/buildings/1-story-bldv1.obj" />
+    <AssetObject id="2-story-bld" src="http://{{envServer}}:8080/serve/models/buildings/2-story-bldv1.obj" />
+    <AssetObject id="3-story-bld" src="http://{{envServer}}:8080/serve/models/buildings/3-story-bldv1.obj" />    
+    <AssetObject id="4-story-bld" src="http://{{envServer}}:8080/serve/models/buildings/4-story-bldv1.obj" />    
+    <AssetObject id="5-story-bld" src="http://{{envServer}}:8080/serve/models/buildings/5-story-bldv1.obj" />
+    <AssetObject id="6-story-bld" src="http://{{envServer}}:8080/serve/models/buildings/6-story-bldv1.obj" />    
+    <AssetObject id="7-story-bld" src="http://{{envServer}}:8080/serve/models/buildings/7-story-bldv1.obj" />
+    <AssetObject id="8-story-bld" src="http://{{envServer}}:8080/serve/models/buildings/8-story-bldv1.obj" />    
+    <AssetObject id="9-story-bld" src="http://{{envServer}}:8080/serve/models/buildings/9-story-bldv1.obj" />    
+    <AssetObject id="10-story-bld" src="http://{{envServer}}:8080/serve/models/buildings/10-story-bldv1.obj" />
+    
+    <!-- Wall Image Assets -->
+    {{#each building}}
+        <AssetImage id="bld-{{ bldnum }}-wall1" src="{{ wall1.img }}" />
+        <AssetImage id="bld-{{ bldnum }}-wall2" src="{{ wall2.img }}" />
+        <AssetImage id="bld-{{ bldnum }}-wall3" src="{{ wall3.img }}" />
+        <AssetImage id="bld-{{ bldnum }}-wall4" src="{{ wall4.img }}" />
+        <AssetImage id="bld-{{ bldnum }}-door" src="{{ door }}" />
+    {{/each}}
+    
+    <!-- Roof -->
+    <AssetImage id="roof" src="http://{{envServer}}:8080/serve/textures/buildings/roof.png" />
+    
+    <!-- Portal Thumbnail -->
+    <AssetImage id="thumb1" src="http://{{envServer}}:8080/serve/images/thumb.png" />
+    
+</Assets>
+<Room server="vrcity.network" 
+      port="5566" 
+      use_local_asset="room_plane" 
+      pos="0 0 0" 
+      xdir="-1 0 0" 
+      ydir="0 1 0" 
+      zdir="0 0 -1"
+      fog="true" 
+      fog_density="0.001" 
+      fog_end="100"
+      >
+
+    <!-- Buidings -->
+    {{#each building}}
+    
+        <!-- Building Model-->
+          <Object id="{{ height }}-story-bld" 
+                  js_id="city-{{ ctynum }}-building-{{ bldnum }}" 
+                  pos="{{ xpos }} 0 {{ ypos }}" 
+                  collision_id="{{ height }}-story-bld" 
+                  scale="9 9 9"
+                  locked="false"
+                  visible="false"
+                  />
+    
+        <!-- Addresses for each side -->
+          <Text pos="{{ adr1.x }} 2.59 {{ adr1.y }}"
+                fwd="-1 0 0" 
+                col="0 0 0" 
+                scale="2 2 2" 
+                locked="false">{{ bldname }} - West</Text>
+          <Text pos="{{ adr2.x }} 2.59 {{ adr2.y }}"
+                fwd="0 0 -1" 
+                col="0 0 0" 
+                scale="2 2 2"  
+                locked="false">{{ bldname }} - North</Text>
+          <Text pos="{{ adr3.x }} 2.59 {{ adr3.y }}"
+                fwd="1 0 0" 
+                col="0 0 0" 
+                scale="2 2 2" 
+                locked="false">{{ bldname }} - East</Text>
+          <Text pos="{{ adr4.x }} 2.59 {{ adr4.y }}"
+                fwd="0 0 1" 
+                col="0 0 0" 
+                scale="2 2 2" 
+                locked="false">{{ bldname }} - South</Text>
+    
+        <!-- Walls for each side -->
+          <Image id="bld-{{ bldnum }}-wall1" 
+                 pos="{{ wall1.x }} {{ wallMove }} {{ wall1.y }}" 
+                 fwd="-1 0 0" 
+                 scale="4.57 4.57 0" 
+                 lighting="false"
+                 />
+          <Image id="bld-{{ bldnum }}-wall2" 
+                 pos="{{ wall2.x }} {{ wallMove }} {{ wall2.y }}" 
+                 fwd="0 0 -1" 
+                 scale="4.57 4.57 0"
+                 lighting="false"
+                 />
+          <Image id="bld-{{ bldnum }}-wall3" 
+                 pos="{{ wall3.x }} {{ wallMove }} {{ wall3.y }}" 
+                 fwd="1 0 0" 
+                 scale="4.57 4.57 0"
+                 lighting="false"
+                 />
+          <Image id="bld-{{ bldnum }}-wall4" 
+                 pos="{{ wall4.x }} {{ wallMove }} {{ wall4.y }}" 
+                 fwd="0 0 1" 
+                 scale="4.57 4.57 0" 
+                 lighting="false"
+                 />
+          <Image id="roof" 
+                 pos="{{ roof.x }} {{ roofMove }} {{ roof.y }}" 
+                 xdir = "-1 0 0"
+                 ydir = "0 0 1"
+                 zdir = "0 1 0"
+                 scale="4.57 4.57 0" 
+                 lighting="false"
+                 />
+    
+        <!-- Portals for each side -->
+            <Link pos="{{ portal1.x }} 0 {{ portal1.y }}" 
+                  title="one"
+                  draw_text="true"
+                fwd="-1 0 0" 
+                draw_glow="false"
+                draw_text="false"
+                thumb_id="{{ door }}"
+                url="http://{{envServer}}:8080/city/{{ctyname}}/building/{{bldname}}/west"
+                col="0.6 1 0.6" 
+                scale="1.8 2.5 1"/>
+            <Link pos="{{ portal2.x }} 0 {{ portal2.y }}" 
+                  title="two"
+                  draw_text="true"
+                fwd="0 0 -1" 
+                draw_glow="false"
+                draw_text="false"
+                thumb_id="{{ door }}"
+                url="http://{{envServer}}:8080/city/{{ctyname}}/building/{{bldname}}/north"
+                col="0.6 1 0.6" 
+                scale="1.8 2.5 1"/>
+            <Link pos="{{ portal3.x }} 0 {{ portal3.y }}" 
+                  title="three"
+                  draw_text="true"
+                fwd="1 0 0" 
+                draw_glow="false"
+                draw_text="false"
+                thumb_id="{{ door }}"
+                url="http://{{envServer}}:8080/city/{{ctyname}}/building/{{bldname}}/east"
+                col="0.6 1 0.6" 
+                scale="1.8 2.5 1"/>
+            <Link pos="{{ portal4.x }} 0 {{ portal4.y }}" 
+                  title="four"
+                  draw_text="true"
+                fwd="0 0 1" 
+                draw_glow="false"
+                draw_text="false"
+                thumb_id="{{ door }}"
+                url="http://{{envServer}}:8080/city/{{ctyname}}/building/{{bldname}}/south"
+                col="0.6 1 0.6" 
+                scale="1.8 2.5 1"/>
+    {{/each}} <!-- End Buildings -->
+    
+</Room>
+</FireBoxRoom>

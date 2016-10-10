@@ -1,0 +1,35 @@
+{
+  "name": "vrcity",
+  "version": "0.0.1",
+  "description": "http://vrcity.network",
+  "main": "app.js",
+  "dependencies": {
+    "colors": "^1.1.2",
+    "express": "^4.14.0",
+    "express-handlebars": "^3.0.0",
+    "express-status-monitor": "0.0.11",
+    "firebase": "^3.2.0",
+    "passport": "^0.3.2",
+    "underscore": "^1.8.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/erictrose/vrcity.git"
+  },
+  "keywords": [
+    "vrcity",
+    "virtual",
+    "reality",
+    "janusvr"
+  ],
+  "author": "Eric Rose",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/erictrose/vrcity/issues"
+  },
+  "homepage": "https://github.com/erictrose/vrcity#readme"
+}

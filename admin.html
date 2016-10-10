@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vrcity admin page</title>
+    <script src="https://cdn.jsdelivr.net/clipboard.js/1.5.12/clipboard.min.js"></script>
+</head>
+<body>
+    
+    <h1>VRCITY Admin Page</h1>
+    
+    <!-- TEST -->
+    <section>
+        
+    </section>
+    
+    <!-- INFO -->
+    <section>
+        <h3>Info</h3>
+        <p>
+            <a href="https://www.digitalocean.com/" target="_blank">Digital Ocean</a>
+            IP: <a href="http://104.236.120.75" target="_blank"><span id="doip">104.236.120.75</span></a>
+            <button class="btn" data-clipboard-target="#doip">copy</button>
+        </p>
+        <p>
+            <a href="https://www.namecheap.com/" target="_blank">Name Cheap</a> 
+            Domain: <a href="http://vrcity.network" target="_blank"><span id="webdom">http://vrcity.network</span></a> 
+            <button class="btn" data-clipboard-target="#webdom">copy</button>
+        </p>
+        <p>
+            Github &nbsp; &nbsp; <a href="https://github.com/erictrose/vrcity" target="_blank">master</a> 
+            &nbsp; &nbsp; <a href="https://github.com/erictrose/vrcity/tree/test" target="_blank">test</a>
+            &nbsp; &nbsp; <a href="https://github.com/erictrose/vrcity/tree/prod" target="_blank">prod</a>
+        </p>
+    </section>
+    
+<script>
+new Clipboard('.btn');
+</script>
+</body>
+</html>
